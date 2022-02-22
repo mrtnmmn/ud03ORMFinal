@@ -1,8 +1,10 @@
 package DAOModels;
 
 import VOModels.VehiculoClientes;
+import VOModels.Vehiculos;
 import conexion.Conexion;
 
+import javax.persistence.PersistenceException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -48,6 +50,20 @@ public class DAOVehiculoClientes {
 
         Conexion conn = new Conexion();
         return conn.getConexion().createQuery(hql).getResultList();
+    }
+
+    //Ej05 insertar alquiler
+    public void insertAlquiler(VehiculoClientes vc){
+        Conexion conn = new Conexion();
+
+        try {
+            conn.getConexion().getTransaction().begin();
+            conn.getConexion().merge(vc);
+            conn.getConexion().getTransaction().commit();
+        } catch (PersistenceException e) {
+            conn.getConexion().getTransaction().rollback();
+            e.printStackTrace();
+        }
     }
 
 

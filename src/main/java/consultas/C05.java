@@ -1,7 +1,11 @@
 package consultas;
 
+import DAOModels.DAOCliente;
 import DAOModels.DAOOficina;
+import DAOModels.DAOVehiculoClientes;
 import DAOModels.DAOVehiculos;
+import VOModels.Clientes;
+import VOModels.VehiculoClientes;
 import VOModels.Vehiculos;
 import conexion.Conexion;
 
@@ -12,22 +16,54 @@ public class C05 {
     public Scanner ns = new Scanner(System.in);
     public DAOVehiculos v = new DAOVehiculos();
     public DAOOficina o = new DAOOficina();
+    public DAOCliente c = new DAOCliente();
+    public DAOVehiculoClientes vc = new DAOVehiculoClientes();
 
     public void insertAlquiler() {
         System.out.println("Insertando un alquiler :");
         System.out.print("\tInsertar la matricula del vehiculo (si no existiera se iniciara el proceso de insercion de un nuevo coche: ");
 
+        VehiculoClientes vcFinal = new VehiculoClientes();
+
         String matricula = ns.nextLine();
         Vehiculos vFinal;
+
         if (v.comprobarMatricula(matricula).isEmpty()) {
             vFinal = insertNewVehiculo(matricula);
         } else {
             vFinal = v.getVehiculo(matricula);
         }
 
+        vcFinal.setVehiculo(vFinal);
+
+        System.out.print("\tInsertar el dni del cliente (si este no existe se iniciara el proceso de insercion de un nuevo cliente): ");
+
+        String dni = ns.nextLine();
+        Clientes cFinal;
+
+        if (c.comprobarDNI(dni).isEmpty()) {
+            cFinal = insertNewClientes(dni);
+        } else {
+            cFinal = c.getCliente(dni);
+            System.out.println(cFinal);
+        }
+
+        vcFinal.setCliente(cFinal);
+
+        System.out.print("\tInsertar los dias: ");
+        vcFinal.setDias(ns.nextInt());
+        ns.nextLine();
 
 
+        System.out.print("\tInsertar seguro: ");
+        vcFinal.setSeguro(ns.nextLine());
+        ns.nextLine();
 
+        System.out.print("\tInsertar precio: ");
+        vcFinal.setPrecio(ns.nextInt());
+        ns.nextLine();
+
+        vc.insertAlquiler(vcFinal);
     }
 
     public Vehiculos insertNewVehiculo(String matricula) {
@@ -54,6 +90,32 @@ public class C05 {
 
         return v1;
 
+    }
+
+    public Clientes insertNewClientes(String dni) {
+
+        Clientes c1 = new Clientes();
+
+        c1.setDni(dni);
+
+        System.out.print("\tInserta el nombre: ");
+        c1.setNombre(ns.nextLine());
+        System.out.print("\tInserta la direccion: ");
+        c1.setDireccion(ns.nextLine());
+        System.out.print("\tInserta la ciudad: ");
+        c1.setCiudad(ns.nextLine());
+        System.out.print("\tInserta el codigo postal: ");
+        c1.setCodigoPostal(ns.nextInt());
+        System.out.print("\tInserta la provincia: ");
+        c1.setProvincia(ns.nextLine());
+        System.out.print("\tInsertar telefono: ");
+        c1.setTelefono(ns.nextInt());
+        System.out.println("\tInserta el numero de tarjeta: ");
+        c1.setNumTarjeta(ns.nextLine());
+
+        c.insertCliente(c1);
+
+        return c1;
     }
 
 
