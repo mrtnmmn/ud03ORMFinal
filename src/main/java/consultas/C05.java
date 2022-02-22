@@ -85,6 +85,8 @@ public class C05 {
         v1.setEdad(ns.nextInt());
         System.out.print("\tInsertar codigo de oficina: ");
         v1.setOficina(o.findOficina(ns.nextInt()));
+        ns.nextLine();
+
 
         v.insertVehiculo(v1);
 
@@ -106,12 +108,16 @@ public class C05 {
         c1.setCiudad(ns.nextLine());
         System.out.print("\tInserta el codigo postal: ");
         c1.setCodigoPostal(ns.nextInt());
+        ns.nextLine();
         System.out.print("\tInserta la provincia: ");
         c1.setProvincia(ns.nextLine());
+        ns.nextLine();
         System.out.print("\tInsertar telefono: ");
         c1.setTelefono(ns.nextInt());
+        ns.nextLine();
         System.out.println("\tInserta el numero de tarjeta: ");
         c1.setNumTarjeta(ns.nextLine());
+        ns.nextLine();
 
         c.insertCliente(c1);
 
