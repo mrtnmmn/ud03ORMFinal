@@ -1,8 +1,10 @@
 package DAOModels;
 
+import VOModels.VehiculoClientes;
 import conexion.Conexion;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 public class DAOVehiculoClientes {
@@ -15,22 +17,37 @@ public class DAOVehiculoClientes {
         System.out.print("Introducir matricula a buscar: ");
         String matricula = ns.nextLine();
 
-        String hql = "SELECT c.nombre, v.matricula, v.marca, vc.dias, vc.seguro, vc.precio from Vehiculos v join VehiculoCliente vc on v.matricula = vc.vehiculo" +
-                " join Cliente c on c.dni = vc.cliente where v.matricula = " + matricula;
+        //String hql = "SELECT c.nombre, v.matricula, v.marca, vc.dias, vc.seguro, vc.precio from Vehiculos v join VehiculoCliente vc on v.matricula = vc.vehiculo" +
+                //" join Cliente c on c.dni = vc.cliente where v.matricula = :matricula";
+
+        String hql = "SELECT cl.nombre, v.matricula, v.marca, vc.dias, vc.seguro, vc.precio " +
+                "FROM Clientes cl JOIN VehiculoClientes vc ON cl.dni = vc.cliente " +
+                "JOIN Vehiculos v ON vc.vehiculo = v.matricula WHERE v.matricula=:matricula";
 
         Conexion conn = new Conexion();
-        return conn.getConexion().createQuery(hql).getResultList().iterator();
+        return conn.getConexion().createQuery(hql).setParameter("matricula", matricula).getResultList().iterator();
+
+
     }
 
     // Ej06
     public Iterator getAlquileresOrder() {
 
 
-        String hql = "SELECT v.matricula, c.dni, c.nombre, c.telefono, vc.dias, vc.precio from VehiculoCliente vc join Cliente c on c.dni = vc.cliente join Vehiculos v on v.matricula = vc.vehiculo " +
+        String hql = "SELECT v.matricula, c.dni, c.nombre, c.telefono, vc.dias, vc.precio from VehiculoClientes vc join Clientes c on c.dni = vc.cliente join Vehiculos v on v.matricula = vc.vehiculo " +
                 " order by c.nombre, v.matricula";
 
         Conexion conn = new Conexion();
         return conn.getConexion().createQuery(hql).getResultList().iterator();
+    }
+
+    // Ej09
+    public List<VehiculoClientes> getCostesAltos() {
+
+        String hql = "from VehiculoClientes vc order by vc.precio";
+
+        Conexion conn = new Conexion();
+        return conn.getConexion().createQuery(hql).getResultList();
     }
 
 

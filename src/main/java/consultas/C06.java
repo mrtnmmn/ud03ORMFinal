@@ -12,10 +12,13 @@ public class C06 {
     public void listAlquileresOrder() {
 
         Iterator it = vc.getAlquileresOrder();
+
+        System.out.println("Listando alquileres (Orden: nombres, matricula): ");
+
         while (it.hasNext()) {
             Object[] row = (Object[]) it.next();
-            System.out.println("Matricula: " + row[0] + "\nDni: " + row[1] + "\nNombre:" + row[2] + "\nTelefono: " + row[3] +
-                    "\nDias: " + row[4] + "\nPrecio: " + row[5]);
+            System.out.println("Matricula: " + row[0] + "\tDni: " + row[1] + "\tNombre:" + row[2] + "\tTelefono: " + row[3] +
+                    "\tDias: " + row[4] + "\tPrecio: " + row[5]);
         }
     }
 

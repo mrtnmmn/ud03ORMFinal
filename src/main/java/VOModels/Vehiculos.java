@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "vehiculos")
+@Table(name = "VEHICULOS")
 public class Vehiculos {
 
     @Id
@@ -16,6 +16,7 @@ public class Vehiculos {
     private String marca;
 
     @Column(name = "veGrupo", nullable = false)
+    @Enumerated(value = EnumType.STRING)
     private Grupo grupo;
 
     @Column(name = "vePlazas", nullable = false)
@@ -31,17 +32,17 @@ public class Vehiculos {
     private int edad;
 
     @ManyToOne
-    @JoinColumn(name = "idOficina")
-    private Oficina oficina;
+    @JoinColumn(name = "veCodOficina")
+    private Oficinas oficinas;
 
     @OneToMany(mappedBy = "vehiculo")
-    private List<VehiculoCliente> vehiculoClienteList;
+    private List<VehiculoClientes> vehiculoClienteList;
 
     private enum Grupo {
         A, B, C, D, E, F, G
     }
 
-    public Vehiculos(String matricula, String marca, Grupo grupo, int plazas, int puertas, int maletero, int edad, Oficina oficina, List<VehiculoCliente> vehiculoClienteList) {
+    public Vehiculos(String matricula, String marca, Grupo grupo, int plazas, int puertas, int maletero, int edad, Oficinas oficina, List<VehiculoClientes> vehiculoClienteList) {
         this.matricula = matricula;
         this.marca = marca;
         this.grupo = grupo;
@@ -49,7 +50,7 @@ public class Vehiculos {
         this.puertas = puertas;
         this.maletero = maletero;
         this.edad = edad;
-        this.oficina = oficina;
+        this.oficinas = oficina;
         this.vehiculoClienteList = vehiculoClienteList;
     }
 
@@ -112,19 +113,19 @@ public class Vehiculos {
         this.edad = edad;
     }
 
-    public Oficina getOficina() {
-        return oficina;
+    public Oficinas getOficina() {
+        return oficinas;
     }
 
-    public void setOficina(Oficina oficina) {
-        this.oficina = oficina;
+    public void setOficina(Oficinas oficina) {
+        this.oficinas = oficina;
     }
 
-    public List<VehiculoCliente> getVehiculoClienteList() {
+    public List<VehiculoClientes> getVehiculoClienteList() {
         return vehiculoClienteList;
     }
 
-    public void setVehiculoClienteList(List<VehiculoCliente> vehiculoClienteList) {
+    public void setVehiculoClienteList(List<VehiculoClientes> vehiculoClienteList) {
         this.vehiculoClienteList = vehiculoClienteList;
     }
 
@@ -133,12 +134,12 @@ public class Vehiculos {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vehiculos vehiculos = (Vehiculos) o;
-        return plazas == vehiculos.plazas && puertas == vehiculos.puertas && maletero == vehiculos.maletero && edad == vehiculos.edad && Objects.equals(matricula, vehiculos.matricula) && Objects.equals(marca, vehiculos.marca) && grupo == vehiculos.grupo && Objects.equals(oficina, vehiculos.oficina) && Objects.equals(vehiculoClienteList, vehiculos.vehiculoClienteList);
+        return plazas == vehiculos.plazas && puertas == vehiculos.puertas && maletero == vehiculos.maletero && edad == vehiculos.edad && Objects.equals(matricula, vehiculos.matricula) && Objects.equals(marca, vehiculos.marca) && grupo == vehiculos.grupo && Objects.equals(oficinas, vehiculos.oficinas) && Objects.equals(vehiculoClienteList, vehiculos.vehiculoClienteList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(matricula, marca, grupo, plazas, puertas, maletero, edad, oficina, vehiculoClienteList);
+        return Objects.hash(matricula, marca, grupo, plazas, puertas, maletero, edad, oficinas, vehiculoClienteList);
     }
 
     @Override
@@ -151,7 +152,7 @@ public class Vehiculos {
                 ", puertas=" + puertas +
                 ", maletero=" + maletero +
                 ", edad=" + edad +
-                ", oficina=" + oficina +
+                ", oficina=" + oficinas +
                 ", vehiculoClienteList=" + vehiculoClienteList +
                 '}';
     }

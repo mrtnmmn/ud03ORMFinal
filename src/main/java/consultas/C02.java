@@ -13,7 +13,7 @@ public class C02 {
         Iterator iterator = v.getListPrecioYDias();
         while (iterator.hasNext()){
             Object[]row = (Object[]) iterator.next();
-            System.out.println("matricula: " + row[0] + " num_dias: " + row[1] + " total cobrado:" + row[2]);
+            System.out.println("\tMatricula: " + row[0] + "\tDias: " + row[1] + "\tImporte total: " + row[2]);
         }
     }
     /*test 02*/

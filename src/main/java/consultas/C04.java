@@ -16,8 +16,8 @@ public class C04 {
 
         while (it.hasNext()) {
             Object[]row = (Object[]) it.next();
-            System.out.println("Nombre: " + row[0] + "\nMatricula: " + row[1] + "\nMarca:" + row[2]
-                + "\nDias: " + row[3] + "\nSeguro: " + row[4] + "\nPrecio: " + row[5]);
+            System.out.println("Nombre: " + row[0] + "\tMatricula: " + row[1] + "\tMarca:" + row[2]
+                + "\tDias: " + row[3] + "\tSeguro: " + row[4] + "\tPrecio: " + row[5]);
         }
     }
 

@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table
-public class Oficina {
+@Table(name = "OFICINAS")
+public class Oficinas {
 
     @Id
-    @Column(name = "idOficina", nullable = false)
+    @Column(name = "ofCodigo", nullable = false)
     private int id;
 
     @Column(name = "ofDireccion", length = 50, nullable = false)
@@ -28,10 +28,10 @@ public class Oficina {
     @Column(name = "ofTelefono", nullable = false)
     private int telefono;
 
-    @OneToMany(mappedBy = "oficina")
+    @OneToMany(mappedBy = "oficinas")
     private List<Vehiculos> listVehiculos = new ArrayList<>();
 
-    public Oficina(int id, String direccion, String ciduad, int codigoPostal, String provincia, int telefono, List<Vehiculos> listVehiculos) {
+    public Oficinas(int id, String direccion, String ciduad, int codigoPostal, String provincia, int telefono, List<Vehiculos> listVehiculos) {
         this.id = id;
         this.direccion = direccion;
         this.ciduad = ciduad;
@@ -41,7 +41,7 @@ public class Oficina {
         this.listVehiculos = listVehiculos;
     }
 
-    public Oficina() {
+    public Oficinas() {
     }
 
     public int getId() {
@@ -104,7 +104,7 @@ public class Oficina {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Oficina oficina = (Oficina) o;
+        Oficinas oficina = (Oficinas) o;
         return id == oficina.id && codigoPostal == oficina.codigoPostal && telefono == oficina.telefono && Objects.equals(direccion, oficina.direccion) && Objects.equals(ciduad, oficina.ciduad) && Objects.equals(provincia, oficina.provincia) && Objects.equals(listVehiculos, oficina.listVehiculos);
     }
 

@@ -4,11 +4,11 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "VehiculoCliente")
-public class VehiculoCliente {
+@Table(name = "VEHICULOSCLIENTES")
+public class VehiculoClientes {
 
     @Id
-    @Column(name = "idVehiculoCliente", nullable = false)
+    @Column(name = "vcId", nullable = false)
     private int id;
 
     @Column(name = "vcDias", nullable = false)
@@ -21,14 +21,14 @@ public class VehiculoCliente {
     private int precio;
 
     @ManyToOne
-    @JoinColumn(name = "veMatricula", nullable = false)
+    @JoinColumn(name = "vcMatricula", nullable = false)
     private Vehiculos vehiculo;
 
     @ManyToOne
-    @JoinColumn(name = "clDni", nullable = false)
-    private Cliente cliente;
+    @JoinColumn(name = "vcDni", nullable = false)
+    private Clientes cliente;
 
-    public VehiculoCliente(int id, int dias, String seguro, int precio, Vehiculos vehiculo, Cliente cliente) {
+    public VehiculoClientes(int id, String matricula, String dni, int dias, String seguro, int precio, Vehiculos vehiculo, Clientes cliente) {
         this.id = id;
         this.dias = dias;
         this.seguro = seguro;
@@ -37,7 +37,7 @@ public class VehiculoCliente {
         this.cliente = cliente;
     }
 
-    public VehiculoCliente() {
+    public VehiculoClientes() {
     }
 
     public int getId() {
@@ -80,11 +80,11 @@ public class VehiculoCliente {
         this.vehiculo = vehiculo;
     }
 
-    public Cliente getCliente() {
+    public Clientes getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(Clientes cliente) {
         this.cliente = cliente;
     }
 
@@ -92,7 +92,7 @@ public class VehiculoCliente {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        VehiculoCliente that = (VehiculoCliente) o;
+        VehiculoClientes that = (VehiculoClientes) o;
         return id == that.id && dias == that.dias && precio == that.precio && Objects.equals(seguro, that.seguro) && Objects.equals(vehiculo, that.vehiculo) && Objects.equals(cliente, that.cliente);
     }
 
@@ -103,7 +103,7 @@ public class VehiculoCliente {
 
     @Override
     public String toString() {
-        return "VehiculoCliente{" +
+        return "VehiculoClientes{" +
                 "id=" + id +
                 ", dias=" + dias +
                 ", seguro='" + seguro + '\'' +

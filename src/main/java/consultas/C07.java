@@ -1,18 +1,19 @@
 package consultas;
 
 import DAOModels.DAOVehiculos;
+import VOModels.Vehiculos;
 
 import java.util.Iterator;
+import java.util.List;
 
 public class C07 {
 
     public DAOVehiculos v = new DAOVehiculos();
 
     public void getPuertasMaletero() {
-        Iterator it = v.getPuertasMaletero();
-        while (it.hasNext()){
-            Object[]row = (Object[]) it.next();
-            System.out.println("Matricula: " + row[0] + "\nMarca: " + row[1] + "\nMaletero: " + row[5] + "\nPuertas: " + row[4]);
+        List<Vehiculos> vehiculos = v.getPuertasMaletero();
+        for (Vehiculos v: vehiculos) {
+            System.out.println(v.getMatricula() );
         }
     }
 

@@ -8,10 +8,10 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <!-- class especificamos las clases que vamos a persistir -->
-        <class>VOModels.Cliente</class>
-        <class>VOModels.Oficina</class>
+        <class>VOModels.Clientes</class>
+        <class>VOModels.Oficinas</class>
         <class>VOModels.Vehiculos</class>
-        <class>VOModels.VehiculoCliente</class>
+        <class>VOModels.VehiculoClientes</class>
 
         <properties>
 

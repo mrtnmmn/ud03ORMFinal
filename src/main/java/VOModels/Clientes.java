@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Cliente")
-public class Cliente {
+@Table(name = "CLIENTES")
+public class Clientes {
 
     @Id
     @Column(name = "clDni", length = 9, nullable = false)
@@ -34,9 +34,9 @@ public class Cliente {
     private String numTarjeta;
 
     @OneToMany(mappedBy = "cliente")
-    private List<VehiculoCliente> vehiculoClienteList;
+    private List<VehiculoClientes> vehiculoClienteList;
 
-    public Cliente(String dni, String nombre, String direccion, String ciudad, int codigoPostal, String provincia, int telefono, String numTarjeta, List<VehiculoCliente> vehiculoClienteList) {
+    public Clientes(String dni, String nombre, String direccion, String ciudad, int codigoPostal, String provincia, int telefono, String numTarjeta, List<VehiculoClientes> vehiculoClienteList) {
         this.dni = dni;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -48,7 +48,7 @@ public class Cliente {
         this.vehiculoClienteList = vehiculoClienteList;
     }
 
-    public Cliente() {
+    public Clientes() {
     }
 
     public String getDni() {
@@ -115,11 +115,11 @@ public class Cliente {
         this.numTarjeta = numTarjeta;
     }
 
-    public List<VehiculoCliente> getVehiculoClienteList() {
+    public List<VehiculoClientes> getVehiculoClienteList() {
         return vehiculoClienteList;
     }
 
-    public void setVehiculoClienteList(List<VehiculoCliente> vehiculoClienteList) {
+    public void setVehiculoClienteList(List<VehiculoClientes> vehiculoClienteList) {
         this.vehiculoClienteList = vehiculoClienteList;
     }
 
@@ -127,7 +127,7 @@ public class Cliente {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Cliente cliente = (Cliente) o;
+        Clientes cliente = (Clientes) o;
         return codigoPostal == cliente.codigoPostal && telefono == cliente.telefono && Objects.equals(dni, cliente.dni) && Objects.equals(nombre, cliente.nombre) && Objects.equals(direccion, cliente.direccion) && Objects.equals(ciudad, cliente.ciudad) && Objects.equals(provincia, cliente.provincia) && Objects.equals(numTarjeta, cliente.numTarjeta) && Objects.equals(vehiculoClienteList, cliente.vehiculoClienteList);
     }
 
