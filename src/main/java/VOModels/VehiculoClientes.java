@@ -9,6 +9,7 @@ public class VehiculoClientes {
 
     @Id
     @Column(name = "vcId", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "vcDias", nullable = false)

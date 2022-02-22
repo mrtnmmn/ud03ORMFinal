@@ -38,7 +38,7 @@ public class Vehiculos {
     @OneToMany(mappedBy = "vehiculo")
     private List<VehiculoClientes> vehiculoClienteList;
 
-    private enum Grupo {
+    public enum Grupo {
         A, B, C, D, E, F, G
     }
 

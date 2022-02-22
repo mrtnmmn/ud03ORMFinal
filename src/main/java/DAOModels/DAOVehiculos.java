@@ -2,7 +2,6 @@ package DAOModels;
 
 import VOModels.Vehiculos;
 import conexion.Conexion;
-import utils.Connections;
 
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
@@ -95,6 +94,35 @@ public class DAOVehiculos {
         } catch (PersistenceException e) {
             e.printStackTrace();
             conn.getConexion().getTransaction().rollback();
+        }
+    }
+
+    //Ej05 comprobacion matricula
+    public List<Vehiculos> comprobarMatricula(String matricula) {
+
+        String hql = "FROM Vehiculos v where v.matricula = :matricula";
+
+        Conexion conn = new Conexion();
+        return conn.getConexion().createQuery(hql).setParameter("matricula", matricula).getResultList();
+    }
+
+    //Ej05 obtener vehiculo
+    public Vehiculos getVehiculo(String matricula) {
+        Conexion conn = new Conexion();
+        return conn.getConexion().find(Vehiculos.class,matricula);
+    }
+
+    //ej05 Insertar vehiculo
+    public void insertVehiculo(Vehiculos v) {
+        Conexion conn = new Conexion();
+
+        try {
+            conn.getConexion().getTransaction().begin();
+            conn.getConexion().merge(v);
+            conn.getConexion().getTransaction().commit();
+        } catch (PersistenceException e) {
+            conn.getConexion().getTransaction().rollback();
+            e.printStackTrace();
         }
     }
 
