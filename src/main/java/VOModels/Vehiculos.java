@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Vehiculos {
 
     @Id
-    @Column(name = "veMartricua", length = 10, nullable = false)
+    @Column(name = "veMatricula", length = 10, nullable = false)
     private String matricula;
 
     @Column(name = "veMarca", length = 20, nullable = false)

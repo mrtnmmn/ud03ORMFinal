@@ -9,7 +9,7 @@ public class C01 {
 
     public DAOVehiculos v = new DAOVehiculos();
 
-    public void ListGrupos() {
+    public void listGrupos() {
         System.out.println("Listando los coches pertenecientes a los grupos E, F y G");
         List<Vehiculos> listVehiculos = v.getListVehiculoGroups();
         for (Vehiculos v: listVehiculos) {
@@ -19,7 +19,7 @@ public class C01 {
 
     public static void main(String[] args) {
         C01 c01 = new C01();
-        c01.ListGrupos();
+        c01.listGrupos();
     }
 
 }
