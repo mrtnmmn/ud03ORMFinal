@@ -10,9 +10,9 @@ public class C02 {
     public DAOVehiculos v = new DAOVehiculos();
 
     public void listPrecioYDias(){
-        Iterator iterator = v.getListPrecioYDias();
-        while (iterator.hasNext()){
-            Object[]row = (Object[]) iterator.next();
+        Iterator it= v.getListPrecioYDias();
+        while (it.hasNext()){
+            Object[]row = (Object[]) it.next();
             System.out.println("\tMatricula: " + row[0] + "\tDias: " + row[1] + "\tImporte total: " + row[2]);
         }
     }

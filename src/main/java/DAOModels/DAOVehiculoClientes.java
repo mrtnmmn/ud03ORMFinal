@@ -44,12 +44,14 @@ public class DAOVehiculoClientes {
     }
 
     // Ej09
-    public List<VehiculoClientes> getCostesAltos() {
+    public Iterator getCostesAltos() {
 
-        String hql = "from VehiculoClientes vc order by vc.precio";
+        String hql= "SELECT v.matricula, v.marca, vc.precio " +
+                "FROM Vehiculos v JOIN VehiculoClientes vc ON v.matricula = vc.vehiculo.matricula " +
+                "WHERE vc.precio = (SELECT MAX(vc.precio) FROM VehiculoClientes vc)";
 
         Conexion conn = new Conexion();
-        return conn.getConexion().createQuery(hql).getResultList();
+        return conn.getConexion().createQuery(hql).getResultList().iterator();
     }
 
     //Ej05 insertar alquiler

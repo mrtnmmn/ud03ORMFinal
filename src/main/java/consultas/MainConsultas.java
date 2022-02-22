@@ -47,6 +47,7 @@ public class MainConsultas {
                     break;
                 case 5:
                     C05 c05 = new C05();
+                    c05.insertAlquiler();
                     break;
                 case 6:
                     C06 c06 = new C06();
